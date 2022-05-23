@@ -7,3 +7,8 @@ body{
 #root{
     height: 100%;
 }
+
+.centerContainer{
+    max-width: 30rem;
+    margin: 0 auto;
+}

@@ -5,6 +5,8 @@ import { StateInterface } from './../Models/stateInterface';
 type DataAction = 
     | { type: 'addIndex', payload: number }
     | { type: 'addAnswer', payload: QuizQuestion }
+    | { type: 'addScoreCorrect', payload: number }
+    | { type: 'addScoreIncorrect', payload: number }
 
 export const DataReducer = (state: StateInterface, action: DataAction): StateInterface =>{
     switch(action.type){
@@ -18,6 +20,18 @@ export const DataReducer = (state: StateInterface, action: DataAction): StateInt
             return{
                 ...state,
                 quizQuestions: [...quizQuestions, quizQuestions[state.index] = action.payload],
+            }
+            break;
+        case 'addScoreCorrect':
+            return{
+                ...state,
+                correct: state.correct + action.payload
+            }
+            break;
+        case 'addScoreIncorrect':
+            return{
+                ...state,
+                incorrect: state.incorrect + action.payload
             }
             break;
     

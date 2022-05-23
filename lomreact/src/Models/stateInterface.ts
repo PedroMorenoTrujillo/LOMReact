@@ -2,5 +2,7 @@ import { QuizQuestion } from "./questionsInterfaces";
 
 export interface StateInterface {
     index: number,
-    quizQuestions: QuizQuestion[]
+    quizQuestions: QuizQuestion[],
+    correct: number, 
+    incorrect: number
 }

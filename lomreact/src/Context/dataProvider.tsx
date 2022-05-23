@@ -10,7 +10,9 @@ interface Props{
 
 const INITIAL_STATE: StateInterface = {
     index: 0,
-    quizQuestions: quizQuestions
+    quizQuestions: quizQuestions,
+    correct: 0, 
+    incorrect: 0,
 }
 
 export const DataProvider = ({children}: Props)=>{
@@ -25,11 +27,21 @@ export const DataProvider = ({children}: Props)=>{
         dispatch({type: 'addIndex', payload: index })
     }
 
+    const setScoreCorrect = (numb: number)=> {
+        dispatch({type: 'addScoreCorrect', payload: numb })
+    }
+
+    const setScoreIncorrect = (numb: number)=> {
+        dispatch({type: 'addScoreIncorrect', payload: numb })
+    }
+
     return (
         <DataContext.Provider value={{
             dataState,
             setAnswer,
             setIndex,
+            setScoreCorrect,
+            setScoreIncorrect
         }}>
             {children}
         </DataContext.Provider>

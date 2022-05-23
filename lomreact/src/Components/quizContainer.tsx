@@ -9,7 +9,7 @@ interface Props {
 
 const Quizcontainer = ({quizQuestion}: Props)=>{
 
-    const { setAnswer, setIndex } = useContext(DataContext);
+    const { setAnswer, setIndex, setScoreCorrect, setScoreIncorrect } = useContext(DataContext);
     const [showAnswerCorrect, setShowAnswerCorrect] = useState<boolean>(false);
     const [showAnswerIncorrect, setShowAnswerIncorrect] = useState<boolean>(false);
     const [activeNextButton, setActiveNextButton] = useState<boolean>(false);
@@ -36,11 +36,13 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
           setShowAnswerCorrect(true);
           quizQuestion.success = true;
           quizQuestion.userAnswer = answer.answer
+          setScoreCorrect(1)
         }else{
           quizQuestion.userAnswer = answer.answer;
           let correct = quizQuestion.answers.find(answer => answer.correct)
           setIncorrectAnswer(correct?.answer ?? '');
           setShowAnswerIncorrect(true);
+          setScoreIncorrect(1)
         }
       }
     
@@ -49,10 +51,12 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
             setShowAnswerCorrect(true);
             quizQuestion.success = true;
             quizQuestion.userAnswer = answer.answer
+            setScoreCorrect(1)
         }else{
           let correct = quizQuestion.answers.find(answer => answer.correct)
           setIncorrectAnswer(correct?.answer ?? '');
           setShowAnswerIncorrect(true);
+          setScoreIncorrect(1)
           quizQuestion.userAnswer = inputTextValue === '' ? 'No respondiste': inputTextValue;
         }
       }
@@ -68,7 +72,7 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
 
     return (
         <>
-            <div className="row bg-dark rounded text-white mt-5 centerContainer">
+            <div className="row bg-dark rounded text-white mt-5 centerContainer mx-auto">
                 <div className="questionNumber my-3">Pregunta {quizQuestion.id}</div>
                 <div>
                     <h5>{quizQuestion.question}</h5>

@@ -4,7 +4,9 @@ import { QuizQuestion, StateInterface } from "../Models";
 export type DataContextProps = {
     dataState: StateInterface,
     setAnswer: (answers: QuizQuestion) => void,
-    setIndex: (index: number) => void
+    setIndex: (index: number) => void,
+    setScoreCorrect: (index: number) => void,
+    setScoreIncorrect: (index: number) => void,
 }
 
 

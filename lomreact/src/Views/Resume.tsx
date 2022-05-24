@@ -5,9 +5,10 @@ import { DataContext } from "../Context/dataContext";
 
 const ResumeQuiz = ()=>{
 
-    const { dataState } = useContext(DataContext);
+    const { dataState, resetState } = useContext(DataContext);
     const { quizQuestions, correct, incorrect } = dataState;
 
+    const resetGame = ()=> resetState();
 
     return (
         <>
@@ -25,7 +26,7 @@ const ResumeQuiz = ()=>{
             <div className="row d-flex justify-content-center bg-dark rounded text-white">
                 
                     {
-                        quizQuestions.map(question =>{ 
+                        quizQuestions.map((question, i) =>{ 
                             return (
                                 <div key={question.id} className="my-3">
                                     <div>Pregunta {question.id}</div>
@@ -46,7 +47,7 @@ const ResumeQuiz = ()=>{
                         
                         })
                     }
-                    <Link to={'/'} type="button" className="btn btn-light px-5 fw-bold my-4 w-auto">Volver a intentarlo</Link>
+                    <Link to={'/'} type="button" className="btn btn-light px-5 fw-bold my-4 w-auto" onClick={()=>resetGame()}>Volver a intentarlo</Link>
             </div>
             
         </>

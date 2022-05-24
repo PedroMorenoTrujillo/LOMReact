@@ -1,12 +1,14 @@
 import { quizQuestions } from './../Models/quizQuestions';
 import { QuizQuestion } from './../Models/questionsInterfaces';
 import { StateInterface } from './../Models/stateInterface';
+import { act } from 'react-dom/test-utils';
 
 type DataAction = 
     | { type: 'addIndex', payload: number }
     | { type: 'addAnswer', payload: QuizQuestion }
     | { type: 'addScoreCorrect', payload: number }
     | { type: 'addScoreIncorrect', payload: number }
+    | { type: 'resetState', payload: StateInterface }
 
 export const DataReducer = (state: StateInterface, action: DataAction): StateInterface =>{
     switch(action.type){
@@ -34,7 +36,9 @@ export const DataReducer = (state: StateInterface, action: DataAction): StateInt
                 incorrect: state.incorrect + action.payload
             }
             break;
-    
+        case 'resetState':
+            return action.payload
+            break;
         default:
             return state
     }

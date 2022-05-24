@@ -35,13 +35,18 @@ export const DataProvider = ({children}: Props)=>{
         dispatch({type: 'addScoreIncorrect', payload: numb })
     }
 
+    const resetState = () =>{
+        dispatch({type: 'resetState', payload: INITIAL_STATE})
+    }
+
     return (
         <DataContext.Provider value={{
             dataState,
             setAnswer,
             setIndex,
             setScoreCorrect,
-            setScoreIncorrect
+            setScoreIncorrect,
+            resetState,
         }}>
             {children}
         </DataContext.Provider>

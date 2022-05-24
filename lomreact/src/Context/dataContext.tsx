@@ -7,6 +7,7 @@ export type DataContextProps = {
     setIndex: (index: number) => void,
     setScoreCorrect: (index: number) => void,
     setScoreIncorrect: (index: number) => void,
+    resetState: ()=> void,
 }
 
 

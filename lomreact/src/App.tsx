@@ -9,7 +9,7 @@ import ResumeQuiz from './Views/Resume';
 function App() {
   return (
     <Router>
-      <div className="container-fluid text-center h-100 p-0">
+      <div className="container-fluid text-center h-100 p-0 overflow-auto">
         <DataProvider>
           <Routes>
             <Route path='/' element={<Intro/>} />

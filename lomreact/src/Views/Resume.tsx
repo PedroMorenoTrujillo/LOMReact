@@ -23,7 +23,7 @@ const ResumeQuiz = ()=>{
                 </div>
             }
             
-            <div className="row d-flex justify-content-center bg-dark rounded text-white">
+            <div className="row d-flex justify-content-center bg-dark rounded text-white resumeGame mx-auto">
                 
                     {
                         quizQuestions.map((question, i) =>{ 

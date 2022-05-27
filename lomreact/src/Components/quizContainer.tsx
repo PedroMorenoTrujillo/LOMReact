@@ -19,9 +19,7 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
     const incorrectString: string = 'La respuesta es incorrecta. La respuesta correcta es: '
 
     const answerQuestion = (answer: Answers, type: string): void => {
-        setShowAnswerCorrect(false);
-        setShowAnswerIncorrect(false);
-        setIncorrectAnswer('');
+        resetValues();
         setActiveNextButton(true);
         if(type === 'select'){
             checkSelect(answer);
@@ -65,6 +63,10 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
         setIndex(quizQuestion.id);
         setActiveNextButton(false);
         setInputTextValue('');
+        resetValues()
+    }
+
+    const resetValues = ()=>{
         setShowAnswerCorrect(false);
         setShowAnswerIncorrect(false);
         setIncorrectAnswer('');
@@ -76,19 +78,29 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
                 <div className="questionNumber my-3">Pregunta {quizQuestion.id}</div>
                 <div>
                     <h5>{quizQuestion.question}</h5>
-                    {
-                        quizQuestion.type === 'select' ? 
-                        <div className="d-flex flex-wrap justify-content-center py-3">
+                    <div className="d-flex flex-wrap justify-content-center py-3">
                         {
-                            quizQuestion.answers.map(answer => 
-                                <button type="button"
-                                    className="btn btn-primary my-3 w-75 fw-bold"
-                                    key={answer.id}
-                                    onClick={()=> answerQuestion(answer, quizQuestion.type)}
-                                    disabled={showAnswerCorrect || showAnswerIncorrect}
-                                    >{answer.answer}
-                                    </button>
+                            quizQuestion.type === 'select' 
+                            ?                               
+                                quizQuestion.answers.map(answer => 
+                                    <button type="button"
+                                        className="btn btn-primary my-3 w-75 fw-bold"
+                                        key={answer.id}
+                                        onClick={()=> answerQuestion(answer, quizQuestion.type)}
+                                        disabled={showAnswerCorrect || showAnswerIncorrect}
+                                        >{answer.answer}
+                                        </button>
                                 )
+                                
+                            : <>
+                                <input type="text"
+                                    value={inputTextValue}
+                                    onChange={(e) => setInputTextValue(e.target.value)} /><button type="button"
+                                        className="btn btn-primary my-3 w-75 fw-bold"
+                                        onClick={() => answerQuestion(quizQuestion.answers[0], quizQuestion.type)}
+                                        disabled={activeNextButton}>
+                                        Comprobar!!</button>
+                                </>
                         }
                         {
                             showAnswerCorrect
@@ -100,36 +112,8 @@ const Quizcontainer = ({quizQuestion}: Props)=>{
                                 ? <span className="showAnswerQuestion incorrect">{incorrectString}<span className="text-danger fw-bold">{incorrectAnswer}</span></span>
                                 : null
                         }
-                        
-                            
-                        </div> : null
-                    }
-                    {
-                        quizQuestion.type === 'input' ? 
-                        <div className="d-flex flex-wrap justify-content-center py-3">
-                            <input type="text" 
-                            value={inputTextValue}
-                            onChange={(e)=> setInputTextValue(e.target.value)}
-                            />
-                            <button type="button"
-                            className="btn btn-primary my-3 w-75 fw-bold"
-                            onClick={()=> answerQuestion(quizQuestion.answers[0], quizQuestion.type)}
-                            disabled={activeNextButton}>
-                            Comprobar!!</button>
-                        {
-                            showAnswerCorrect
-                                ? <span className="showAnswerQuestion text-success fw-bold">{correctAnswer}</span>
-                                : null
-                        }
-                        {
-                            showAnswerIncorrect
-                                ? <span className="showAnswerQuestion incorrect">{incorrectString}<span className="text-danger fw-bold">{incorrectAnswer}</span></span>
-                                : null
-                        }
-                        
-                            
-                        </div> : null
-                    }
+                    </div>
+
                 </div>
             </div>
             {

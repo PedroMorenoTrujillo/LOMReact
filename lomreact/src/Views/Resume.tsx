@@ -26,7 +26,7 @@ const ResumeQuiz = ()=>{
             <div className="row d-flex justify-content-center bg-dark rounded text-white resumeGame mx-auto">
                 
                     {
-                        quizQuestions.map((question, i) =>{ 
+                        quizQuestions.map(question =>{ 
                             return (
                                 <div key={question.id} className="my-3">
                                     <div>Pregunta {question.id}</div>
@@ -34,17 +34,11 @@ const ResumeQuiz = ()=>{
                                         {
                                             question.success 
                                             ? <span>Tu respuesta fue la correcta: <span className="text-success fw-bold">{question.userAnswer}</span></span>
-                                            : null
-                                        }
-                                        {
-                                            !question.success 
-                                            ? <span>Tu respuesta fue erronea: <span className="text-danger">{question.userAnswer}</span></span>
-                                            : null
+                                            : <span>Tu respuesta fue erronea: <span className="text-danger">{question.userAnswer}</span></span>
                                         }
                                     </div>
                                 </div>
                             )
-                        
                         })
                     }
                     <Link to={'/'} type="button" className="btn btn-light px-5 fw-bold my-4 w-auto" onClick={()=>resetGame()}>Volver a intentarlo</Link>

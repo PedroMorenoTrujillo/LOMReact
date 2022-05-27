@@ -16,7 +16,7 @@ const Intro = ()=>{
                     <p>{intro.SecondParagraph}</p>
                     <p>{intro.ThirdParagraph}</p>
                 </div>
-                <Link type="button" className="btn btn-light px-5 fw-bold" to={'/quiz'}>Save humanty!!</Link>
+                <Link type="button" className="btn btn-light px-5 fw-bold" to={'/quiz'}>Save humanity!!</Link>
             </div>
         </div>
     )

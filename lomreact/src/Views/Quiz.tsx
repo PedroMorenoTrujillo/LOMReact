@@ -5,10 +5,8 @@ import { DataContext } from "../Context/dataContext";
 
 const Quiz = ()=>{
 
-    const { dataState, setIndex } = useContext(DataContext);
+    const { dataState } = useContext(DataContext);
     const{ index, quizQuestions } = dataState;
-
-    
 
 
     return (

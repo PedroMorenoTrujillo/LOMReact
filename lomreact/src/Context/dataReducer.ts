@@ -1,7 +1,6 @@
 import { quizQuestions } from './../Models/quizQuestions';
 import { QuizQuestion } from './../Models/questionsInterfaces';
 import { StateInterface } from './../Models/stateInterface';
-import { act } from 'react-dom/test-utils';
 
 type DataAction = 
     | { type: 'addIndex', payload: number }

@@ -1,5 +1,5 @@
 # LOMReact
 
-Netlifly
+Netlify
 
 https://lom-react.netlify.app/
